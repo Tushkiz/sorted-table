@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./devserver",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "keywords": [],
   "author": "",
@@ -22,14 +22,19 @@
     "eslint-loader": "^1.3.0",
     "file-loader": "^0.8.5",
     "fs-extra": "^0.29.0",
+    "jasmine": "^2.6.0",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-webpack": "^2.0.3",
     "lodash.merge": "^4.3.5",
     "postcss-loader": "^0.8.2",
     "stompjs": "^2.3.3",
     "style-loader": "^0.13.1",
     "stylelint": "^6.2.2",
-    "webpack": "^1.13.0",
     "typedarray-to-buffer": "^3.1.2",
-    "yaeti": "0.0.6",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1",
+    "yaeti": "0.0.6"
   }
 }
