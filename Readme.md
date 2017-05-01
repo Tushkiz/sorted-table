@@ -1,15 +1,17 @@
-DB Updating Table Dev Challenge
+Sorted Table
 ===============================
 
-This module contains a development challenge for DB recruitment.
-
-The instructions are in the site/index.html file.
-
-To view them, run
+To view, run
 
 ```
 npm install
 npm start
+```
+
+To test, run
+
+```
+npm test
 ```
 
 from within this directory.  This will start a development server (using webpack)

@@ -3,6 +3,11 @@
  *
  * Edit it as you need.  It currently contains things that you might find helpful to get started.
  */
+var ExchangeTable = require('./src/ExchangeTable').ExchangeTable;
+var PubSub = require('./src/PubSub').PubSub();
+
+var CURRENCY_PAIR_UPDATE = require('./src/topics').CURRENCY_PAIR_UPDATE;
+var UPDATE_TABLE = require('./src/topics').UPDATE_TABLE;
 
 // This is not really required, but means that changes to index.html will cause a reload.
 require('./site/index.html')
@@ -20,13 +25,24 @@ client.debug = function(msg) {
   }
 }
 
+const exchangeTable = new ExchangeTable();
+const UPDATE_INTERVAL = 30 * 1000;
+
 function connectCallback() {
-  document.getElementById('stomp-status').innerHTML = "It has now successfully connected to a stomp server serving price updates for some foreign exchange currency pairs."
+  let interval = null;
+  
+  client.subscribe('/fx/prices', function ({body}) {
+    PubSub.publish(CURRENCY_PAIR_UPDATE, JSON.parse(body));
+    
+    if (interval == null) {
+      PubSub.publish(UPDATE_TABLE);
+      interval = setInterval(() => {
+        PubSub.publish(UPDATE_TABLE);
+      }, UPDATE_INTERVAL);
+    }
+  })
 }
 
 client.connect({}, connectCallback, function(error) {
   alert(error.headers.message)
 })
-
-const exampleSparkline = document.getElementById('example-sparkline')
-Sparkline.draw(exampleSparkline, [1, 2, 3, 6, 8, 20, 2, 2, 4, 2, 3])

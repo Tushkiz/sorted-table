@@ -32,6 +32,7 @@ tr:nth-child(even) {
 
 td {
     width: 130px;
+    padding: 5px;
     text-align: right;
 }
 
